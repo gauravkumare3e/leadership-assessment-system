@@ -1,0 +1,2793 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>InspireOne | LDC 180 Degree Leadership Assessment</title>
+
+
+  <style>
+    :root {
+      --brand-deep: #350046;
+      --brand-acid: #a8e52f;
+      --brand-accent: #2a82c9;
+      --ink: #1a2431;
+      --ink-soft: #4f5d6b;
+      --paper: rgba(255, 255, 255, 0.9);
+      --paper-strong: #ffffff;
+      --line: #d3c6dd;
+      --line-soft: #e6dceb;
+      --self: #8658ad;
+      --manager: #38a169;
+      --warning: #be7407;
+      --danger: #b42318;
+      --ok: #0b7a4f;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow: 0 20px 38px rgba(34, 22, 46, 0.14);
+      --bg-a: #dce8f4;
+      --bg-b: #e8f5df;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 650px at 0% -15%, rgba(168, 229, 47, 0.24), transparent 58%),
+        radial-gradient(980px 580px at 100% -28%, rgba(66, 134, 182, 0.22), transparent 70%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b));
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: "Palatino Linotype", "Book Antiqua", "Times New Roman", serif;
+      letter-spacing: 0.02em;
+      margin: 0;
+    }
+
+    .art-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .art {
+      position: absolute;
+      opacity: 0.14;
+      mix-blend-mode: multiply;
+      filter: saturate(1.08) contrast(1.03);
+    }
+
+    .art.bird {
+      width: min(36vw, 450px);
+      left: -90px;
+      top: 240px;
+      transform: rotate(-4deg);
+    }
+
+    .art.plant {
+      width: min(35vw, 430px);
+      right: -95px;
+      bottom: 210px;
+      transform: rotate(6deg);
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, 95vw);
+      margin: 22px auto 40px;
+    }
+
+    .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(2px);
+    }
+
+    .hero {
+      padding: 16px;
+      background:
+        radial-gradient(620px 220px at 100% 0%, rgba(118, 177, 224, 0.35), transparent 70%),
+        radial-gradient(500px 220px at 0% 100%, rgba(172, 226, 178, 0.35), transparent 70%),
+        linear-gradient(142deg, #faf4ff, #f1f8ff 45%, #f6fcf0);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+ .hero-logo {
+  display: block;
+  width: 160px;   
+  height: auto;
+  border: 1px solid #d8cee2;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 8px;
+}
+
+    .hero-copy .tag {
+      margin: 0;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #5e257f;
+      font-weight: 700;
+    }
+
+    .hero-copy h1 {
+      margin: 6px 0;
+      font-size: clamp(1.45rem, 3vw, 2.2rem);
+      line-height: 1.12;
+      color: #2f173f;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      color: #5b4a68;
+      max-width: 72ch;
+    }
+
+    .meta-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .field {
+      display: grid;
+      gap: 4px;
+      font-size: 0.84rem;
+      color: #533f64;
+      font-weight: 600;
+    }
+
+.field input,
+.field select {
+
+ border: 1px solid #ccb9da;
+
+ border-radius: 8px;
+
+ padding: 8px 10px;
+
+ font: inherit;
+
+ color: #24162d;
+
+ background: #ffffff;
+
+ height: 38px;
+
+ box-sizing: border-box;
+}
+
+    .hint-note {
+      margin: 8px 0 0;
+      color: #5a6a77;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .content-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(310px, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .assessment-panel {
+      padding: 16px;
+    }
+
+    .assessment-panel h2 {
+      font-size: 1.46rem;
+      margin-bottom: 6px;
+    }
+
+    .subtext {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.96rem;
+    }
+
+    .legend {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(80px, 1fr));
+      gap: 8px;
+    }
+
+    .legend-item {
+      border: 1px solid #dacde4;
+      border-radius: 10px;
+      background: #fcf8ff;
+      text-align: center;
+      padding: 9px 8px;
+      font-size: 0.78rem;
+      color: #4d3e58;
+    }
+
+    .legend-item strong {
+      display: block;
+      color: var(--brand-deep);
+      margin-bottom: 3px;
+      font-size: 1rem;
+    }
+
+    .dimension-card {
+      border: 1px solid #dacde4;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px;
+      margin-top: 12px;
+    }
+
+    .dimension-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .dimension-head h3 {
+      font-size: 1.1rem;
+      color: #311644;
+    }
+
+    .dimension-count {
+      font-size: 0.78rem;
+      color: #6a5a79;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .statement-row {
+      border-top: 1px solid #ecdef3;
+      padding: 10px 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 110px 110px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .statement-row:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .statement-text {
+      margin: 0;
+      color: #32263f;
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
+    .score-select {
+      display: grid;
+      gap: 4px;
+      font-size: 0.72rem;
+      color: #5d4e6a;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 700;
+    }
+
+    .score-select select {
+      border: 1px solid #cebada;
+      border-radius: 8px;
+      padding: 7px 8px;
+      background: #ffffff;
+      font: inherit;
+      color: #24172d;
+      min-height: 36px;
+    }
+
+    .sidebar {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .side-card {
+      border: 1px solid #ddcfe6;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 12px;
+    }
+
+    .side-card h3 {
+      font-size: 1.06rem;
+      margin-bottom: 8px;
+      color: #311743;
+    }
+
+    .side-card p,
+    .side-card li {
+      margin: 0;
+      color: #4f5f6c;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .side-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .progress {
+      display: grid;
+      gap: 8px;
+    }
+
+    .progress-meter {
+      width: 100%;
+      height: 12px;
+      background: #e8dde9;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #6f2d99, #36a063);
+      border-radius: 999px;
+      transition: width 220ms ease;
+    }
+
+    .progress-label {
+      font-size: 0.84rem;
+      color: #5f4f6e;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .actions.compact button {
+      min-height: 36px;
+      font-size: 0.85rem;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      min-height: 42px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #3a0f55, #5b2d90);
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(57, 19, 83, 0.25);
+    }
+
+    .btn-secondary {
+      background: #ecf3f9;
+      color: #20374b;
+      border: 1px solid #c8dae8;
+    }
+
+    .btn-print {
+      background: linear-gradient(90deg, #0f6f48, #148857);
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(21, 124, 79, 0.25);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .report {
+      margin-top: 18px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .report.hidden {
+      display: none;
+    }
+
+    .report-cover {
+     min-height: 95vh;
+      position: relative;
+      display: grid;
+      align-items: center;
+      background:
+        radial-gradient(780px 480px at -5% 0%, rgba(113, 56, 159, 0.2), transparent 62%),
+        radial-gradient(680px 480px at 100% 100%, rgba(66, 161, 110, 0.2), transparent 60%),
+        linear-gradient(135deg, #f7f3fb, #eef7ff 42%, #f3f9ed);
+      padding: 30px;
+      border-bottom: 1px solid #d6c8df;
+      isolation: isolate;
+    }
+
+    .cover-bg-art {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .cover-art {
+      position: absolute;
+      width: min(42vw, 510px);
+      opacity: 0.17;
+      filter: saturate(1.1);
+      mix-blend-mode: multiply;
+    }
+
+    .cover-art.macaw {
+      left: -140px;
+      top: 64px;
+      transform: rotate(-4deg);
+    }
+
+    .cover-art.suranjan {
+      right: -126px;
+      bottom: 18px;
+      transform: rotate(7deg);
+    }
+
+    .cover-art.poppy {
+      right: -86px;
+      top: 56px;
+      width: min(34vw, 390px);
+      opacity: 0.14;
+      transform: rotate(-8deg);
+    }
+
+   .cover-brand-mark {
+ position:absolute;
+ top:24px;
+ right:28px;
+ width:86px;
+
+ background:none;
+ border:none;
+ box-shadow:none;
+ padding:0;
+}
+
+    .cover-brand-mark img {
+      width: 100%;
+      display: block;
+    }
+
+    .cover-content {
+      max-width: 880px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .cover-kicker {
+      margin: 0;
+      font-size: 0.84rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #6a2f8b;
+    }
+
+   .cover-logo-wrap {
+ width: 260px;
+ background: transparent;
+ border: none;
+ padding: 0;
+ box-shadow: none;
+ margin: 0 auto;
+}
+
+   .cover-logo {
+  width: 240px;   /* Smaller controlled size */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Center logo */
+}
+
+    .cover-title {
+      font-size: clamp(2rem, 4.2vw, 3.4rem);
+      line-height: 1.07;
+      color: #2d153d;
+      margin: 0;
+    }
+
+    .cover-subtitle {
+      margin: 0;
+      color: #4f3f5f;
+      font-size: 1.04rem;
+      max-width: 66ch;
+      line-height: 1.5;
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 720px;
+    }
+
+    .cover-chip {
+      border: 1px solid #d8cae1;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px 12px;
+    }
+
+    .cover-chip .label {
+      margin: 0;
+      color: #68557a;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .cover-chip .value {
+      margin: 5px 0 0;
+      color: #241230;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+   .cover-banner {
+ border:none;
+ border-radius:12px;
+ overflow:hidden;
+ padding:0;
+}
+
+   .cover-banner img {
+      width: 100%;
+      max-height: 120px;
+      object-fit: cover;
+      display: block;
+}
+
+    .report-page {
+      min-height: auto;
+      padding: 20px;
+      border-bottom: 1px solid #d8cae1;
+      background:
+        radial-gradient(760px 420px at 0% 0%, rgba(132, 179, 221, 0.14), transparent 62%),
+        radial-gradient(720px 420px at 100% 100%, rgba(160, 219, 163, 0.14), transparent 62%),
+        linear-gradient(135deg, #f7f4fb, #f2f8ff 46%, #f6fbef);
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .report-page > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .report-page-banner {
+      max-width: 1020px;
+      border: 1px solid #cebadd;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 14px 24px rgba(43, 24, 58, 0.12);
+      margin-bottom: 6px;
+    }
+
+    .report-page-banner img {
+      width: 100%;
+      display: block;
+    }
+
+ .report-page-mark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 55px;
+
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+   .report-page-mark img {
+  width: 100%;
+  height: auto;
+}
+
+    .page-art {
+      position: absolute;
+      width: min(34vw, 370px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.2;
+      mix-blend-mode: multiply;
+      filter: saturate(1.08);
+    }
+
+    #contentsPage .page-art.left {
+      left: -96px;
+      bottom: -28px;
+    }
+
+    #contentsPage .page-art.right {
+      right: -92px;
+      top: 160px;
+    }
+
+    #howToUsePage .page-art.left {
+      left: -80px;
+      top: 145px;
+    }
+
+    #howToUsePage .page-art.right {
+      right: -85px;
+      bottom: -24px;
+    }
+
+    #understandingGraphsPage .page-art.left {
+      left: -84px;
+      bottom: -28px;
+    }
+
+    #understandingGraphsPage .page-art.right {
+      right: -90px;
+      top: 164px;
+    }
+
+    .report-page h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: #2b1640;
+      margin: 0;
+    }
+
+    .report-page p {
+      margin: 0;
+      color: #354657;
+      font-size: 0.95rem;
+      line-height: 1.62;
+      max-width: 84ch;
+    }
+
+    .toc-list {
+      margin: 6px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      max-width: 780px;
+    }
+
+    .toc-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: baseline;
+      border-bottom: 1px dashed #ccb7db;
+      padding-bottom: 5px;
+      color: #2e2040;
+      font-size: 0.95rem;
+    }
+
+    .toc-item strong {
+      color: #2a1b3b;
+      font-weight: 700;
+    }
+
+    .guide-list {
+      margin: 4px 0 0;
+      padding-left: 22px;
+      list-style-type: square;
+      display: grid;
+      gap: 8px;
+      color: #2f4052;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 90ch;
+    }
+
+    .guide-list li::marker {
+      color: #3b2550;
+    }
+
+    .scale-box {
+      margin-top: 14px;
+      border: 1px solid #d7c8e2;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 14px;
+      max-width: 460px;
+    }
+
+    .scale-box h3 {
+      margin: 0 0 8px;
+      font-size: 1.22rem;
+      color: #2c1840;
+    }
+
+    .scale-list {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 6px;
+      color: #243548;
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .report-body {
+      padding: 0px;
+      display: grid;
+      gap: 10px;
+      background: rgba(252, 250, 255, 0.7);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .report-body > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .report-body-banner {
+      max-width: 1020px;
+      border: 1px solid #d0bedf;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 14px 24px rgba(43, 24, 58, 0.12);
+    }
+
+    .report-body-banner img {
+      width: 100%;
+      display: block;
+    }
+
+ .report-body-mark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 55px;
+
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+
+  z-index: 3;
+}
+
+.report-body-mark img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+    .report-body-art {
+      position: absolute;
+      width: min(30vw, 320px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.12;
+      mix-blend-mode: multiply;
+    }
+
+    .report-body-art.left {
+      left: -72px;
+      top: 140px;
+    }
+
+    .report-body-art.right {
+      right: -70px;
+      bottom: 20px;
+    }
+
+    .report-header {
+      border: 1px solid #dacde4;
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 14px;
+    }
+
+    .report-header h2 {
+      font-size: 1.64rem;
+      color: #281539;
+      margin-bottom: 4px;
+    }
+
+    .report-header p {
+      margin: 0;
+      color: #4f6070;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .kpi {
+      border: 1px solid #decee8;
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 11px;
+    }
+
+    .kpi .label {
+      margin: 0;
+      color: #68577a;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .kpi .value {
+      margin: 5px 0 0;
+      font-size: 1.58rem;
+      color: #241231;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .kpi .note {
+      margin: 5px 0 0;
+      font-size: 0.85rem;
+      color: #5a6a78;
+    }
+
+    .report-card {
+      border: 1px solid #dfd2e9;
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 12px;
+ margin-bottom: 10px;
+
+    }
+
+    .report-card h3 {
+      font-size: 1.16rem;
+      color: #281539;
+      margin-bottom: 10px;
+    }
+
+    .report-card p {
+      margin: 0;
+      color: #4d5d6c;
+      line-height: 1.5;
+    }
+
+    .dual-chart {
+      display: grid;
+      gap: 8px;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 230px) minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .chart-label {
+      margin: 0;
+      font-size: 0.84rem;
+      color: #3e2f4b;
+      font-weight: 700;
+    }
+
+    .bars {
+      display: grid;
+      gap: 4px;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 12px;
+      background: #ece2f0;
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .bar.self {
+      background: linear-gradient(90deg, #73439c, #9167b6);
+    }
+
+    .bar.manager {
+      background: linear-gradient(90deg, #248353, #3fac72);
+    }
+
+    .bar-caption {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: #5c6b78;
+      gap: 8px;
+    }
+
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .insight-box {
+      border: 1px solid #ddd0e7;
+      border-radius: 10px;
+      background: #fbf9ff;
+      padding: 10px;
+    }
+
+    .insight-box h4 {
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+      color: #321a44;
+    }
+
+    .insight-box ul {
+      margin: 0;
+      padding-left: 17px;
+      color: #4b5a68;
+      font-size: 0.88rem;
+      display: grid;
+      gap: 4px;
+    }
+
+    .score-table-wrap {
+      overflow-x: auto;
+    }
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.score-table th,
+.score-table td {
+
+  border: 1px solid #eadff0;
+
+  padding: 6px 8px;
+
+  text-align: left;
+
+  vertical-align: middle;   /* CHANGE 1 */
+
+  font-size: 0.75rem;       /* CHANGE 2 */
+
+  box-sizing: border-box;
+
+}
+
+    .score-table th {
+      color: #3b2949;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #f7f0fc;
+      position: sticky;
+      top: 0;
+    }
+
+    .score-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      border: 1px solid transparent;
+    }
+
+    .score-pill.role-model {
+      background: #edf9f2;
+      color: #0c7548;
+      border-color: #bde8cf;
+    }
+
+    .score-pill.effective {
+      background: #eff6fd;
+      color: #1f5f9f;
+      border-color: #c5def4;
+    }
+
+    .score-pill.emerging {
+      background: #fff8ea;
+      color: #a76606;
+      border-color: #f1d59a;
+    }
+
+    .score-pill.priority {
+      background: #fff1ef;
+      color: #a82c25;
+      border-color: #f2c2be;
+    }
+
+    .detail-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .detail-card {
+      border: 1px solid #ddd1e8;
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 12px;
+    }
+
+    .detail-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 9px;
+    }
+
+    .detail-head h4 {
+      font-size: 1.03rem;
+      color: #2d173f;
+    }
+
+    .detail-head p {
+      margin: 0;
+      color: #5a6a78;
+      font-size: 0.84rem;
+    }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    .mini-table th,
+    .mini-table td {
+      border-bottom: 1px solid #eee3f3;
+      padding: 7px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.84rem;
+    }
+
+    .mini-table th {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #4a3857;
+      background: #faf6fe;
+    }
+
+    .mini-score {
+      font-weight: 700;
+      color: #2e1940;
+      white-space: nowrap;
+    }
+
+    .plan-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .plan-table th,
+    .plan-table td {
+      border-bottom: 1px solid #ecdef2;
+      padding: 9px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.86rem;
+    }
+
+    .plan-table th {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #4c3958;
+      background: #f7f1fb;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .method-box {
+      border: 1px solid #dfd2e8;
+      border-radius: 10px;
+      background: #fdfbff;
+      padding: 10px;
+    }
+
+    .method-box h4 {
+      margin: 0 0 5px;
+      color: #2f1a41;
+      font-size: 0.95rem;
+    }
+
+    .method-box p {
+      margin: 0;
+      color: #50606f;
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .note-strip {
+      margin-top: 10px;
+      border: 1px solid #dbcee5;
+      border-radius: 10px;
+      background: #f8f4fc;
+      padding: 10px;
+      color: #4f5f6d;
+      font-size: 0.85rem;
+    }
+
+    .screen-only {
+      display: block;
+    }
+
+    @media (max-width: 1080px) {
+      .meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-grid,
+      .method-grid,
+      .list-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .meta-grid,
+      .kpi-grid,
+      .method-grid,
+      .list-grid,
+      .cover-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legend {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .statement-row {
+        grid-template-columns: 1fr;
+      }
+
+      .chart-row {
+        grid-template-columns: 1fr;
+      }
+
+      .report-cover,
+      .report-page {
+        padding: 30px 18px;
+      }
+
+   .cover-brand-mark,
+.report-page-mark {
+  width: 52px;
+  right: 14px;
+  top: 14px;
+  padding: 5px;
+}
+
+      .page-art,
+      .report-body-art {
+        width: min(54vw, 250px);
+        opacity: 0.14;
+      }
+    }
+
+ 
+@media print {
+
+ @page {
+  size: A4;
+  margin: 10mm;
+ }
+
+ body {
+  background: white;
+ }
+
+ /* Hide screen elements */
+
+ .art-layer,
+ .screen-only,
+ .app > .panel:not(.report) {
+  display: none !important;
+ }
+
+ .app {
+  width: 100%;
+  margin: 0;
+ }
+
+ .report {
+  border: none;
+  box-shadow: none;
+ }
+
+ /* Cover Page */
+
+ .report-cover {
+  min-height: auto;
+  padding: 15px;
+  page-break-after: always;
+ }
+
+ /* Report Pages */
+
+ .report-page {
+  min-height: auto;
+  padding: 15px;
+  page-break-before: always;
+ }
+
+ /* ===== PERFECT LOGO POSITION ===== */
+
+ .report-body-mark {
+  position: absolute !important;
+  top: 22px !important;
+  right: 24px !important;
+  width: 60px !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+ }
+
+ .report-body-mark img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+ }
+
+ /* Remove logos from cover */
+
+ .report-cover .report-page-mark,
+ .report-cover .report-body-mark {
+  display: none !important;
+ }
+
+ /* Prevent Page Breaking */
+
+ .report-card,
+ .detail-card,
+ .chart-row,
+ table {
+  page-break-inside: avoid;
+ }
+
+ /* Images */
+
+ img {
+  max-width: 100%;
+  height: auto;
+ }
+
+ /* Cover Logo */
+
+ .cover-logo {
+  width: 230px;
+ }
+
+ /* Banner Fix */
+
+ .cover-banner img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+ }
+
+ /* Remove Hidden Space */
+
+ .report-body {
+  padding: 8px !important;
+  display: block !important;
+ }
+
+ /* PERFECT BORDER ALIGNMENT */
+
+ .report-card,
+ .detail-card,
+ .report-header,
+ .kpi,
+ .scale-box,
+ .side-card {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin-bottom: 10px !important;
+ }
+
+ /* PERFECT INPUT ALIGNMENT */
+
+ .field input,
+ .field select {
+  width: 100% !important;
+  box-sizing: border-box !important;
+ }
+
+ /* PERFECT TABLE ALIGNMENT */
+
+ .score-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  table-layout: fixed !important;
+ }
+
+ .score-table th,
+ .score-table td {
+  border: 1px solid #eadff0 !important;
+  padding: 6px 8px !important;
+  font-size: 0.75rem !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+ }
+
+}
+</style>
+</head>
+<body>
+
+  <div class="art-layer" aria-hidden="true">
+    <img src="assets/motif-blue-macaw.png" alt="" class="art bird">
+    <img src="assets/motif-suranjan.png" alt="" class="art plant">
+  </div>
+
+  <main class="app">
+    <section class="panel hero screen-only">
+      <img src="assets/logo.png" alt="InspireOne logo" class="hero-logo">
+      <div class="hero-copy">
+        <p class="tag">InspireOne Leadership Capability Suite</p>
+        <h1>LDC 180 Degree Leadership Assessment</h1>
+
+<p id="loggedUserEmail" style="font-weight:600;color:#2a82c9;margin-top:4px;"></p>
+        <p>
+          Standards-aligned 180 assessment with dual-view scoring (Self + Manager), dimension-level analytics,
+          perception-gap analysis, and action-planning outputs designed around globally accepted assessment practices.
+        </p>
+
+        <div class="meta-grid">
+          <label class="field">Participant Name
+            <input id="participantName" type="text" placeholder="Enter participant name">
+          </label>
+          <label class="field">Role / Grade
+            <input id="participantRole" type="text" placeholder="Enter role">
+          </label>
+          <label class="field">Function
+            <input id="participantFunction" type="text" placeholder="Enter function">
+          </label>
+          <label class="field">Manager Name
+            <input id="managerName" type="text" placeholder="Enter manager name">
+          </label>
+          <label class="field">Assessment Date
+            <input id="assessmentDate" type="date">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid screen-only">
+      <section class="panel assessment-panel">
+        <h2>Assessment Input</h2>
+        <p class="subtext">Rate all 22 behaviors on a 1-5 effectiveness scale. Individual and Manager can complete separately, then merge via import.</p>
+
+<p style="background:#fff3cd;padding:8px;border-radius:6px;font-weight:600;color:#856404;margin-top:8px;">
+⚠ Manager ratings will unlock after self assessment is completed.
+</p>
+        <div class="legend" aria-label="Rating scale">
+          <div class="legend-item"><strong>1</strong>Rarely Demonstrated</div>
+          <div class="legend-item"><strong>2</strong>Inconsistently Demonstrated</div>
+          <div class="legend-item"><strong>3</strong>Usually Demonstrated</div>
+          <div class="legend-item"><strong>4</strong>Consistently Strong</div>
+          <div class="legend-item"><strong>5</strong>Role Model Behavior</div>
+        </div>
+
+        <form id="assessmentForm" novalidate></form>
+      </section>
+
+      <aside class="panel sidebar">
+        <article class="side-card">
+          <h3>Progress</h3>
+          <div class="progress">
+            <div class="progress-meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p class="progress-label" id="progressText">0 / 44 ratings completed</p>
+            <p class="progress-label" id="selfProgressText">Self: 0 / 22</p>
+            <p class="progress-label" id="managerProgressText">Manager: 0 / 22</p>
+          </div>
+        </article>
+
+        <article class="side-card">
+          <h3>Split Workflow (Individual + Manager)</h3>
+          <label class="field">Entry Mode
+            <select id="workflowMode">
+              <option value="consolidated">Consolidated View (both columns editable)</option>
+              <option value="individual">Individual Entry (Self column only)</option>
+              <option value="manager">Manager Entry (Manager column only)</option>
+            </select>
+          </label>
+          <p class="hint-note" id="workflowNote">
+            Use one file for Individual and one file for Manager. Export each side, then import both to generate final report.
+          </p>
+          <div class="actions compact">
+            <button type="button" class="btn-secondary" id="exportSelfBtn">Export Individual File</button>
+            <button type="button" class="btn-secondary" id="exportManagerBtn">Export Manager File</button>
+            <button type="button" class="btn-secondary" id="importSelfBtn">Import Individual File</button>
+            <button type="button" class="btn-secondary" id="importManagerBtn">Import Manager File</button>
+          </div>
+          <input id="importSelfInput" type="file" accept=".json,application/json" hidden>
+          <input id="importManagerInput" type="file" accept=".json,application/json" hidden>
+        </article>
+
+        <article class="side-card">
+          <h3>Best-Practice Design</h3>
+          <ul>
+            <li>Behaviorally anchored statements grouped by leadership dimensions.</li>
+            <li>Dual-rater view to quantify manager-self perception gaps.</li>
+            <li>Dimension averages, score bands, and targeted development actions.</li>
+            <li>Interpretation model aligned to modern leadership assessment norms.</li>
+          </ul>
+        </article>
+
+        <article class="side-card">
+          <h3>Interpretation Bands</h3>
+          <ul>
+            <li><strong>4.20-5.00:</strong> Role Model</li>
+            <li><strong>3.60-4.19:</strong> Effective</li>
+            <li><strong>3.00-3.59:</strong> Emerging</li>
+            <li><strong>&lt; 3.00:</strong> Priority Development</li>
+          </ul>
+<div class="actions">
+
+<button type="button" class="btn-secondary" id="sendManagerBtn">
+Send to Manager
+</button>
+
+<button type="button" class="btn-primary" id="generateBtn" disabled>
+Generate Detailed Report
+</button>
+
+<button type="button" class="btn-secondary" id="resetBtn">
+Reset All Ratings
+</button>
+
+<button type="button" class="btn-print" id="printBtn" disabled>
+Print / Save PDF
+</button>
+
+<p style="color:#0b7a4f;font-weight:600;margin-top:10px;">
+✓ Your responses are saved automatically
+</p>
+
+<button onclick="logout()" 
+style="background:#c62828;color:white;border-radius:8px;height:40px;">
+Logout
+</button>
+
+</div>     </aside>
+    </section>
+
+    <section class="panel report hidden" id="reportSection" aria-live="polite">
+      <section class="report-cover">
+        <div class="cover-bg-art" aria-hidden="true">
+          <img src="assets/motif-blue-macaw.png" alt="" class="cover-art macaw">
+          <img src="assets/motif-suranjan.png" alt="" class="cover-art suranjan">
+          <img src="assets/motif-blue-poppy.png" alt="" class="cover-art poppy">
+        </div>
+        <div class="cover-brand-mark">
+          <img src="assets/logo.png" alt="InspireOne mark">
+        </div>
+
+        <div class="cover-content">
+          <p class="cover-kicker">InspireOne Leadership Development Centre</p>
+          <div class="cover-logo-wrap">
+            <img src="assets/logo.png" alt="InspireOne logo" class="cover-logo">
+          </div>
+          <h2 class="cover-title">LDC 180 Degree Leadership Assessment Report</h2>
+          <p class="cover-subtitle">
+            Detailed behavioral feedback report consolidating Self and Manager ratings across core leadership dimensions.
+          </p>
+
+          <div class="cover-grid">
+            <div class="cover-chip">
+              <p class="label">Participant</p>
+              <p class="value" id="coverParticipant">Participant</p>
+            </div>
+            <div class="cover-chip">
+              <p class="label">Role / Function</p>
+              <p class="value" id="coverRoleFunction">Role · Function</p>
+            </div>
+            <div class="cover-chip">
+              <p class="label">Manager</p>
+              <p class="value" id="coverManager">Manager</p>
+            </div>
+            <div class="cover-chip">
+              <p class="label">Assessment Date</p>
+              <p class="value" id="coverDate">Date</p>
+            </div>
+          </div>
+
+          <div class="cover-banner">
+            <img src="assets/io-social-banner.png" alt="InspireOne banner">
+          </div>
+        </div>
+      </section>
+
+      <section class="report-page" id="contentsPage">
+        <div class="report-page-banner">
+          <img src="assets/io-social-banner.png" alt="InspireOne banner">
+        </div>
+        <div class="report-page-mark">
+          <img src="assets/logo.png" alt="InspireOne mark">
+        </div>
+        <img src="assets/motif-blue-macaw.png" alt="" class="page-art left">
+        <img src="assets/motif-blue-poppy.png" alt="" class="page-art right">
+        <h2>Contents</h2>
+        <p>This report is organized to support reflection, manager discussion, and focused development planning.</p>
+        <ul class="toc-list">
+          <li class="toc-item"><strong>Cover Page</strong><span>01</span></li>
+          <li class="toc-item"><strong>Contents</strong><span>02</span></li>
+          <li class="toc-item"><strong>How to use this report</strong><span>03</span></li>
+          <li class="toc-item"><strong>Understanding the graphs</strong><span>04</span></li>
+          <li class="toc-item"><strong>Executive Summary</strong><span>05</span></li>
+          <li class="toc-item"><strong>Assessment Methodology</strong><span>06</span></li>
+          <li class="toc-item"><strong>Dimension Score Profile (Self vs Manager)</strong><span>07</span></li>
+          <li class="toc-item"><strong>Key Strengths and Development Priorities</strong><span>08</span></li>
+          <li class="toc-item"><strong>Dimension Summary Table</strong><span>09</span></li>
+          <li class="toc-item"><strong>Detailed Dimension Analysis</strong><span>10</span></li>
+          <li class="toc-item"><strong>30-60-90 Day Development Plan</strong><span>11</span></li>
+        </ul>
+      </section>
+
+      <section class="report-page" id="howToUsePage">
+        <div class="report-page-banner">
+          <img src="assets/io-social-banner.png" alt="InspireOne banner">
+        </div>
+        <div class="report-page-mark">
+          <img src="assets/logo.png" alt="InspireOne mark">
+        </div>
+        <img src="assets/motif-catkin-yew.png" alt="" class="page-art left">
+        <img src="assets/motif-suranjan.png" alt="" class="page-art right">
+        <h2>How to use this report?</h2>
+        <p>The objective of this report is to facilitate your development. The report is designed to enable you to:</p>
+        <ul class="guide-list">
+          <li>Create awareness of your perceived strengths and areas of development.</li>
+          <li>Create development plans on identied focus areas for enhancing leadership skills.</li>
+        </ul>
+        <p>
+          It is important to focus on the elements that are critical for leadership and prioritize your development based on
+          leveraging areas that are strengths and closing the gaps between current and ideal performance levels.
+        </p>
+        <p>
+          It is also critical that you spend time with your manager discussing the report and then evaluating the expectations.
+        </p>
+        <p>
+          It is important to take note of the positive aspects of the results. Once recognized, these strengths can be used to
+          develop your full potential.
+        </p>
+      </section>
+
+      <section class="report-page" id="understandingGraphsPage">
+        <div class="report-page-banner">
+          <img src="assets/io-social-banner.png" alt="InspireOne banner">
+        </div>
+        <div class="report-page-mark">
+          <img src="assets/logo.png" alt="InspireOne mark">
+        </div>
+        <img src="assets/motif-blue-poppy.png" alt="" class="page-art left">
+        <img src="assets/motif-blue-macaw.png" alt="" class="page-art right">
+        <h2>Understanding the graphs:</h2>
+        <p>
+          The graphs can be used to see if your perception of self is in line with how your supervisor/ line manager sees you.
+          Your results can fall into any one of the following categories:
+        </p>
+        <ul class="guide-list">
+          <li>
+            <strong>Open / Known Strengths:</strong> Elements that are recognized/ perceived as strengths by self and your
+            supervisor i.e. rating by self and others is similar. This implies that you recognize this element as strength and so
+            do your stakeholders.
+          </li>
+          <li>
+            <strong>Hidden / Unknown strengths:</strong> Elements that are known as strengths by others but not recognized as
+            strengths by self i.e. rating by others is significantly higher than that by self. This implies that you may be unaware
+            of some strength you demonstrate.
+          </li>
+          <li>
+            <strong>Known Areas of Development:</strong> Elements that are recognized/ perceived as areas of development by self
+            and your supervisor i.e. rating by self and others is similar on recognizing some areas as being critical focus areas
+            for development. This implies that you have already identified this element as being a development area for yourself.
+          </li>
+          <li>
+            <strong>Blind Spots / Unknown Areas of Development:</strong> Elements that are recognized as areas of development by
+            your supervisor but not by self i.e. rating by others is significantly lower than that by self.
+          </li>
+        </ul>
+
+        <div class="scale-box">
+          <h3>Scale Interpretation:</h3>
+          <ol class="scale-list">
+            <li>1 - Strongly Disagree</li>
+            <li>2 - Disagree</li>
+            <li>3 - Somewhat Agree</li>
+            <li>4 - Agree</li>
+            <li>5 - Strongly Agree</li>
+          </ol>
+        </div>
+      </section>
+
+      <div class="report-body">
+        <div class="report-body-banner">
+          <img src="assets/io-social-banner.png" alt="InspireOne banner">
+        </div>
+       <div class="report-body-mark screen-logo">
+          <img src="assets/logo.png" alt="InspireOne mark">
+        </div>
+        <img src="assets/motif-catkin-yew.png" alt="" class="report-body-art left">
+        <img src="assets/motif-blue-poppy.png" alt="" class="report-body-art right">
+
+        <section class="report-header">
+          <h2>Executive Summary</h2>
+          <p id="reportMeta">LDC 180 Degree Leadership Assessment</p>
+        </section>
+
+        <section class="kpi-grid" id="kpiGrid"></section>
+
+        <section class="report-card">
+          <h3>Assessment Methodology</h3>
+          <p>
+            This report applies global assessment design principles: behavior-specific items, a consistent 5-point anchored scale,
+            perspective comparison (Self vs Manager), and dimension-level diagnostics tied to practical development actions.
+          </p>
+          <div class="method-grid">
+            <div class="method-box">
+              <h4>1. Structured Competencies</h4>
+              <p>22 observable statements mapped to 8 leadership dimensions from your LDC framework.</p>
+            </div>
+            <div class="method-box">
+              <h4>2. Dual-Perspective Evidence</h4>
+              <p>Self and Manager ratings are analyzed separately and then compared for alignment and blind spots.</p>
+            </div>
+            <div class="method-box">
+              <h4>3. Statistical Interpretation</h4>
+              <p>Dimension means, overall means, and absolute gap index are converted into clear interpretation bands.</p>
+            </div>
+            <div class="method-box">
+              <h4>4. Action Orientation</h4>
+              <p>Top strengths and priority areas are translated into a 30-60-90 day development blueprint.</p>
+            </div>
+          </div>
+          <div class="note-strip" id="executiveNarrative"></div>
+        </section>
+
+        <section class="report-card">
+          <h3>Dimension Score Profile (Self vs Manager)</h3>
+          <div class="dual-chart" id="chartArea"></div>
+        </section>
+
+        <section class="report-card">
+          <h3>Key Strengths and Development Priorities</h3>
+          <div class="list-grid">
+            <div class="insight-box">
+              <h4>Top Strengths (Manager View)</h4>
+              <ul id="strengthList"></ul>
+            </div>
+            <div class="insight-box">
+              <h4>Top Priorities</h4>
+              <ul id="priorityList"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="report-card">
+          <h3>Dimension Summary Table</h3>
+          <div class="score-table-wrap">
+            <table class="score-table" id="summaryTable">
+              <thead>
+                <tr>
+                  <th>Dimension</th>
+                  <th>Self Avg</th>
+                  <th>Manager Avg</th>
+                  <th>Gap (M-S)</th>
+                  <th>Band</th>
+                  <th>Interpretation</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="report-card">
+          <h3>Detailed Dimension Analysis</h3>
+          <div class="detail-grid" id="detailGrid"></div>
+        </section>
+
+        <section class="report-card">
+          <h3>30-60-90 Day Development Plan</h3>
+          <table class="plan-table" id="planTable">
+            <thead>
+              <tr>
+                <th>Priority Dimension</th>
+                <th>30 Days</th>
+                <th>60 Days</th>
+                <th>90 Days</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const items = [
+      {
+        id: 1,
+        dimension: "Role Understanding",
+        selfText: "I proactively seek clarity on expectations of my managerial role and align my actions accordingly.",
+        managerText: "The participant proactively seeks clarity on expectations of the managerial role and aligns actions accordingly."
+      },
+      {
+        id: 2,
+        dimension: "Role Understanding",
+        selfText: "I proactively align with stakeholders to understand their priorities, constraints, and success measures.",
+        managerText: "The participant aligns with stakeholders to understand their priorities, constraints, and success measures."
+      },
+      {
+        id: 3,
+        dimension: "Goal Setting",
+        selfText: "I set individual and team goals that are specific, measurable, and clearly defined.",
+        managerText: "The participant sets individual and team goals that are specific, measurable, and clearly defined."
+      },
+      {
+        id: 4,
+        dimension: "Goal Setting",
+        selfText: "I establish timelines and checkpoints to review progress and performance of self and team.",
+        managerText: "The participant establishes timelines and checkpoints to review progress and performance of self and team."
+      },
+      {
+        id: 5,
+        dimension: "Feedback & Coaching",
+        selfText: "I provide feedback that is specific, objective, and based on observed behaviors or data.",
+        managerText: "The participant provides feedback that is specific, objective, and based on observed behaviors or data."
+      },
+      {
+        id: 6,
+        dimension: "Feedback & Coaching",
+        selfText: "I hold constructive and timely feedback conversations, even when they are difficult.",
+        managerText: "The participant holds constructive and timely feedback conversations, even when they are difficult."
+      },
+      {
+        id: 7,
+        dimension: "Feedback & Coaching",
+        selfText: "I use regular one-on-one conversations to build confidence, clarity, and accountability in my team.",
+        managerText: "The participant uses regular one-on-one conversations to build confidence, clarity, and accountability within the team."
+      },
+      {
+        id: 8,
+        dimension: "Feedback & Coaching",
+        selfText: "I adopt a coaching approach by asking questions that help team members find their own solutions.",
+        managerText: "The participant adopts a coaching approach by asking questions that help team members find their own solutions."
+      },
+      {
+        id: 9,
+        dimension: "Delegation & Planning",
+        selfText: "I delegate tasks appropriately, ensuring they are aligned with the right roles and capabilities.",
+        managerText: "The participant delegates tasks appropriately, ensuring they are aligned with the right roles and capabilities."
+      },
+      {
+        id: 10,
+        dimension: "Delegation & Planning",
+        selfText: "I allocate responsibilities to help team members learn, stretch, and develop.",
+        managerText: "The participant allocates responsibilities to help team members learn, stretch, and develop."
+      },
+      {
+        id: 11,
+        dimension: "Delegation & Planning",
+        selfText: "I develop well-defined plans with clear goals and timelines.",
+        managerText: "The participant develops well-defined plans with clear goals and timelines."
+      },
+      {
+        id: 12,
+        dimension: "Delegation & Planning",
+        selfText: "I differentiate clearly between high-priority and low-priority tasks and plan accordingly.",
+        managerText: "The participant differentiates clearly between high-priority and low-priority tasks and plans accordingly."
+      },
+      {
+        id: 13,
+        dimension: "Trust & Motivation",
+        selfText: "I build trust through open dialogue and empower my team to make decisions.",
+        managerText: "The participant builds trust through open dialogue and empowers the team to make decisions."
+      },
+      {
+        id: 14,
+        dimension: "Trust & Motivation",
+        selfText: "I foster an environment where my team feels safe to share ideas and speak up.",
+        managerText: "The participant fosters an environment where their team feels safe to share ideas and speak up."
+      },
+      {
+        id: 15,
+        dimension: "Trust & Motivation",
+        selfText: "I recognize and appreciate team members' efforts.",
+        managerText: "The participant recognizes and appreciates team members' efforts and contributions."
+      },
+      {
+        id: 16,
+        dimension: "Communication",
+        selfText: "I communicate ideas clearly, concisely, and in a structured manner.",
+        managerText: "The participant communicates ideas clearly, concisely, and in a structured manner."
+      },
+      {
+        id: 17,
+        dimension: "Communication",
+        selfText: "I analyze information and present insights that support quick, informed decision-making.",
+        managerText: "The participant analyzes information and presents insights that support quick, informed decision-making."
+      },
+      {
+        id: 18,
+        dimension: "Communication",
+        selfText: "I create compelling presentations that highlight key business priorities and actions.",
+        managerText: "The participant creates compelling presentations that highlight key business priorities and actions."
+      },
+      {
+        id: 19,
+        dimension: "Adaptive Leadership",
+        selfText: "I clearly identify which team members need recognition, direction, and empowerment.",
+        managerText: "The participant demonstrates clarity in identifying which team members need recognition, direction, or empowerment."
+      },
+      {
+        id: 20,
+        dimension: "Adaptive Leadership",
+        selfText: "I flex my leadership style to match the performance and development needs of each team member.",
+        managerText: "The participant flexes the leadership style to match the performance and development needs of each team member."
+      },
+      {
+        id: 21,
+        dimension: "Ownership",
+        selfText: "I take ownership not just for my work, but for my team's outcomes and success.",
+        managerText: "The participant takes ownership not just for individual work, but for the team's outcomes and success."
+      },
+      {
+        id: 22,
+        dimension: "Ownership",
+        selfText: "I create clarity on roles, responsibilities, and performance expectations within the team.",
+        managerText: "The participant creates clarity on roles, responsibilities, and performance expectations within the team."
+      }
+    ];
+
+    const dimensionGuidance = {
+      "Role Understanding": {
+        intent: "Clarify managerial expectations and stakeholder alignment before execution.",
+        interpretation: "Strong performance indicates strategic alignment and reduced role ambiguity.",
+        actions: [
+          "Schedule a monthly stakeholder alignment review with explicit success measures.",
+          "Translate role expectations into top 5 leadership priorities and track them visibly.",
+          "Validate role boundaries and decision rights with manager and cross-functional partners."
+        ]
+      },
+      "Goal Setting": {
+        intent: "Set specific goals, checkpoints, and measurable outcomes for self and team.",
+        interpretation: "Higher scores reflect disciplined planning cadence and better performance visibility.",
+        actions: [
+          "Convert broad goals into SMART goals with owners and due dates.",
+          "Run fortnightly progress reviews focused on variance and corrective actions.",
+          "Create an outcome dashboard with 3 leading and 3 lagging indicators."
+        ]
+      },
+      "Feedback & Coaching": {
+        intent: "Build capability through clear feedback, coaching conversations, and accountability.",
+        interpretation: "Higher scores indicate a growth culture with stronger performance correction.",
+        actions: [
+          "Use behavior-impact-next step framing in every feedback conversation.",
+          "Block recurring one-on-ones and include a fixed coaching segment.",
+          "Ask at least two developmental questions before giving direct solutions."
+        ]
+      },
+      "Delegation & Planning": {
+        intent: "Delegate intentionally, prioritize effectively, and create executable plans.",
+        interpretation: "Stronger scores show better leverage of team capability and execution reliability.",
+        actions: [
+          "Map tasks by complexity and match them to capability/stretch goals.",
+          "Review workload and priority trade-offs weekly with the team.",
+          "Define clear milestones and completion criteria for major deliverables."
+        ]
+      },
+      "Trust & Motivation": {
+        intent: "Create psychological safety, autonomy, and recognition-led motivation.",
+        interpretation: "Higher scores correlate with discretionary effort and stronger team engagement.",
+        actions: [
+          "Close each team meeting with recognition of specific contributions.",
+          "Invite dissenting viewpoints before finalizing important decisions.",
+          "Delegate one meaningful decision per team member each month."
+        ]
+      },
+      "Communication": {
+        intent: "Communicate with clarity, synthesis, and persuasive business messaging.",
+        interpretation: "High scores indicate strong influence, decision support, and message clarity.",
+        actions: [
+          "Standardize communication using context-insight-recommendation format.",
+          "Practice concise executive summaries before major reviews.",
+          "Use visual storytelling to highlight decision points and risks."
+        ]
+      },
+      "Adaptive Leadership": {
+        intent: "Adjust leadership style to individual readiness and situation demands.",
+        interpretation: "Higher scores suggest situational flexibility and better people outcomes.",
+        actions: [
+          "Assess each team member's readiness for core responsibilities monthly.",
+          "Pre-plan style shifts for high-risk or high-visibility tasks.",
+          "After key interactions, reflect on style choice and outcome quality."
+        ]
+      },
+      "Ownership": {
+        intent: "Demonstrate accountability for team results and role clarity.",
+        interpretation: "Higher scores indicate dependable execution and strong accountability culture.",
+        actions: [
+          "Define ownership matrix for key outcomes and review it monthly.",
+          "Escalate risks early with clear mitigation plans.",
+          "Set explicit performance expectations and follow through on commitments."
+        ]
+      }
+    };
+
+    const managerEmail = "kumargauravoknielit@gmail.com"
+    const assessmentForm = document.getElementById("assessmentForm");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const selfProgressText = document.getElementById("selfProgressText");
+    const managerProgressText = document.getElementById("managerProgressText");
+    const generateBtn = document.getElementById("generateBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const printBtn = document.getElementById("printBtn");
+    const reportSection = document.getElementById("reportSection");
+    const workflowMode = document.getElementById("workflowMode");
+    const workflowNote = document.getElementById("workflowNote");
+    const exportSelfBtn = document.getElementById("exportSelfBtn");
+    const exportManagerBtn = document.getElementById("exportManagerBtn");
+    const importSelfBtn = document.getElementById("importSelfBtn");
+    const importManagerBtn = document.getElementById("importManagerBtn");
+    const importSelfInput = document.getElementById("importSelfInput");
+    const importManagerInput = document.getElementById("importManagerInput");
+
+    function byDimension() {
+      return items.reduce((acc, item) => {
+        if (!acc[item.dimension]) {
+          acc[item.dimension] = [];
+        }
+        acc[item.dimension].push(item);
+        return acc;
+      }, {});
+    }
+
+    function buildSelect(kind, id) {
+      const select = document.createElement("select");
+      select.dataset.kind = kind;
+      select.dataset.id = String(id);
+      select.innerHTML = `
+        <option value="">Select</option>
+        <option value="1">1 - Rarely</option>
+        <option value="2">2 - Inconsistent</option>
+        <option value="3">3 - Usually</option>
+        <option value="4">4 - Strong</option>
+        <option value="5">5 - Role Model</option>
+      `;
+      return select;
+    }
+
+    function getColumnSelects(kind) {
+      return [...assessmentForm.querySelectorAll(`select[data-kind="${kind}"]`)];
+    }
+
+    function setColumnDisabled(kind, disabled) {
+      getColumnSelects(kind).forEach((select) => {
+        select.disabled = disabled;
+        const wrap = select.closest(".score-select");
+        if (wrap) {
+          wrap.style.opacity = disabled ? "0.55" : "1";
+        }
+      });
+    }
+
+    function applyEntryMode() {
+      const mode = workflowMode.value;
+      if (mode === "individual") {
+        setColumnDisabled("self", false);
+        setColumnDisabled("manager", true);
+        workflowNote.textContent =
+          "Individual fills Self only. Export Individual file and share for consolidation.";
+      } else if (mode === "manager") {
+        setColumnDisabled("self", true);
+        setColumnDisabled("manager", false);
+        workflowNote.textContent =
+          "Manager fills Manager only. Export Manager file and share for consolidation.";
+      } else {
+        setColumnDisabled("self", false);
+        setColumnDisabled("manager", false);
+        workflowNote.textContent =
+          "Use one file for Individual and one file for Manager. Export each side, then import both to generate final report.";
+      }
+    }
+
+    function participantSlug() {
+      const raw = document.getElementById("participantName").value.trim().toLowerCase();
+      const cleaned = raw.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      return cleaned || "participant";
+    }
+
+    function collectMeta() {
+      return {
+        participantName: document.getElementById("participantName").value.trim() || "",
+        participantRole: document.getElementById("participantRole").value.trim() || "",
+        participantFunction: document.getElementById("participantFunction").value.trim() || "",
+        managerName: document.getElementById("managerName").value.trim() || "",
+        assessmentDate: document.getElementById("assessmentDate").value || ""
+      };
+    }
+
+    function applyMeta(meta) {
+      if (!meta || typeof meta !== "object") {
+        return;
+      }
+      if (meta.participantName) {
+        document.getElementById("participantName").value = meta.participantName;
+      }
+      if (meta.participantRole) {
+        document.getElementById("participantRole").value = meta.participantRole;
+      }
+      if (meta.participantFunction) {
+        document.getElementById("participantFunction").value = meta.participantFunction;
+      }
+      if (meta.managerName) {
+        document.getElementById("managerName").value = meta.managerName;
+      }
+      if (meta.assessmentDate) {
+        document.getElementById("assessmentDate").value = meta.assessmentDate;
+      }
+    }
+
+    function downloadJson(filename, data) {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = filename;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportSide(kind) {
+      const ratings = {};
+      getColumnSelects(kind).forEach((select) => {
+        const id = Number(select.dataset.id);
+        ratings[id] = select.value === "" ? null : Number(select.value);
+      });
+      const filled = Object.values(ratings).filter((v) => Number.isFinite(v)).length;
+      if (filled === 0) {
+        window.alert(`No ${kind === "self" ? "Individual" : "Manager"} ratings to export yet.`);
+        return;
+      }
+      const payload = {
+        assessment: "LDC-180",
+        version: "1.0",
+        raterType: kind,
+        exportedAt: new Date().toISOString(),
+        meta: collectMeta(),
+        ratings
+      };
+      const label = kind === "self" ? "individual" : "manager";
+      downloadJson(`${participantSlug()}-ldc-180-${label}.json`, payload);
+    }
+
+    function applyImportedRatings(kind, payload) {
+      const ratings = payload && typeof payload === "object" ? payload.ratings : null;
+      if (!ratings || typeof ratings !== "object") {
+        throw new Error("Invalid file format: ratings section missing.");
+      }
+      applyMeta(payload.meta);
+      getColumnSelects(kind).forEach((select) => {
+        const id = Number(select.dataset.id);
+        const val = ratings[id] ?? ratings[String(id)];
+        const parsed = Number(val);
+        select.value = [1, 2, 3, 4, 5].includes(parsed) ? String(parsed) : "";
+      });
+      updateProgress();
+    }
+
+    function importSide(kind, file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const payload = JSON.parse(String(reader.result || "{}"));
+          const declaredType = payload && payload.raterType;
+          if (declaredType && declaredType !== kind) {
+            throw new Error(
+              `This file is marked as ${declaredType}. Import it into the ${declaredType === "self" ? "Individual" : "Manager"} slot.`
+            );
+          }
+          applyImportedRatings(kind, payload);
+          window.alert(`${kind === "self" ? "Individual" : "Manager"} ratings imported.`);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : "Invalid import file.";
+          window.alert(message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function renderForm() {
+      const groups = byDimension();
+      const entries = Object.entries(groups);
+      assessmentForm.innerHTML = "";
+
+      entries.forEach(([dimension, rows]) => {
+        const card = document.createElement("section");
+        card.className = "dimension-card";
+
+        const head = document.createElement("div");
+        head.className = "dimension-head";
+        head.innerHTML = `<h3>${dimension}</h3><span class="dimension-count">${rows.length} Statements</span>`;
+        card.appendChild(head);
+
+        rows.forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "statement-row";
+
+          const statement = document.createElement("p");
+          statement.className = "statement-text";
+          statement.textContent = item.managerText;
+          row.appendChild(statement);
+
+          const selfWrap = document.createElement("label");
+          selfWrap.className = "score-select";
+          selfWrap.textContent = "Self";
+          selfWrap.appendChild(buildSelect("self", item.id));
+          row.appendChild(selfWrap);
+
+          const managerWrap = document.createElement("label");
+          managerWrap.className = "score-select";
+          managerWrap.textContent = "Manager";
+          managerWrap.appendChild(buildSelect("manager", item.id));
+          row.appendChild(managerWrap);
+
+          card.appendChild(row);
+        });
+
+        assessmentForm.appendChild(card);
+      });
+
+assessmentForm.querySelectorAll("select").forEach((select) => {
+
+select.addEventListener("change", async () => {
+
+updateProgress()
+let email = localStorage.getItem("employeeEmail") || localStorage.getItem("userEmail")
+if(!email) return
+
+const questionId = select.dataset.id
+const ratingType = select.dataset.kind
+const score = select.value
+
+if(score){
+
+await supabaseClient.from("responses").upsert({
+user_email: email,
+question_id: questionId,
+rating_type: ratingType,
+score: score
+})
+
+}
+
+})
+
+})
+
+applyEntryMode()
+}
+
+function updateProgress(){
+
+const selfSelects = getColumnSelects("self")
+const managerSelects = getColumnSelects("manager")
+
+const selfDone = selfSelects.filter(select => select.value !== "").length
+const managerDone = managerSelects.filter(select => select.value !== "").length
+
+const loginEmail = localStorage.getItem("userEmail")
+
+if(loginEmail === managerEmail){
+
+managerSelects.forEach(select => {
+select.disabled = false
+})
+
+}else{
+
+managerSelects.forEach(select => {
+select.disabled = true
+})
+
+}
+const completed = selfDone + managerDone
+const total = selfSelects.length + managerSelects.length
+
+const pct = total === 0 ? 0 : Math.round((completed / total) * 100)
+
+progressBar.style.width = pct + "%"
+progressText.textContent = completed + " / " + total + " ratings completed"
+
+selfProgressText.textContent = "Self: " + selfDone + " / " + selfSelects.length
+managerProgressText.textContent = "Manager: " + managerDone + " / " + managerSelects.length
+
+progressBar.parentElement.setAttribute("aria-valuenow", pct)
+
+const fullyScored = selfDone === selfSelects.length && managerDone === managerSelects.length
+
+generateBtn.disabled = !fullyScored
+
+if(!fullyScored){
+reportSection.classList.add("hidden")
+printBtn.disabled = true
+}
+
+}
+    function getRatings(kind) {
+      const map = {};
+      assessmentForm.querySelectorAll(`select[data-kind="${kind}"]`).forEach((select) => {
+        map[Number(select.dataset.id)] = Number(select.value || 0);
+      });
+      return map;
+    }
+
+    function average(values) {
+      if (!values.length) {
+        return 0;
+      }
+      return values.reduce((sum, val) => sum + val, 0) / values.length;
+    }
+
+    function scoreBand(score) {
+      if (score >= 4.2) {
+        return {
+          label: "Role Model",
+          className: "role-model",
+          note: "Demonstrates outstanding and repeatable leadership behavior."
+        };
+      }
+      if (score >= 3.6) {
+        return {
+          label: "Effective",
+          className: "effective",
+          note: "Consistently effective with selective enhancement opportunities."
+        };
+      }
+      if (score >= 3.0) {
+        return {
+          label: "Emerging",
+          className: "emerging",
+          note: "Capability is visible but not yet consistent under pressure."
+        };
+      }
+      return {
+        label: "Priority",
+        className: "priority",
+        note: "Needs focused development to reduce risk to team outcomes."
+      };
+    }
+
+    function format(value, digits = 2) {
+      return Number(value).toFixed(digits);
+    }
+
+    function computeDimensionStats(selfRatings, managerRatings) {
+      const groups = byDimension();
+      return Object.entries(groups).map(([dimension, rows]) => {
+        const selfVals = rows.map((item) => selfRatings[item.id]);
+        const managerVals = rows.map((item) => managerRatings[item.id]);
+        const selfAvg = average(selfVals);
+        const managerAvg = average(managerVals);
+        const gap = managerAvg - selfAvg;
+        const absGap = Math.abs(gap);
+        const alignment = Math.max(0, 100 - (absGap / 4) * 100);
+        const band = scoreBand(managerAvg);
+        return {
+          dimension,
+          rows,
+          selfAvg,
+          managerAvg,
+          gap,
+          absGap,
+          alignment,
+          band,
+          guidance: dimensionGuidance[dimension] || {
+            intent: "Strengthen leadership effectiveness through deliberate behavioral practice.",
+            interpretation: "Interpret score alongside business context and role demands.",
+            actions: [
+              "Clarify expected behavior with manager feedback.",
+              "Practice behavior in weekly operating rhythm.",
+              "Review progress monthly with evidence."
+            ]
+          }
+        };
+      });
+    }
+
+    function renderKpis(stats, selfOverall, managerOverall, alignmentIndex, gapOverall) {
+      const kpiGrid = document.getElementById("kpiGrid");
+      const gapLabel = gapOverall >= 0 ? `+${format(gapOverall)}` : format(gapOverall);
+      const overallBand = scoreBand(managerOverall);
+
+      const cards = [
+        {
+          label: "Overall Manager Score",
+          value: format(managerOverall),
+          note: `${overallBand.label} (${overallBand.note})`
+        },
+        {
+          label: "Overall Self Score",
+          value: format(selfOverall),
+          note: "Self-perception across all 22 behaviors"
+        },
+        {
+          label: "Perception Gap (M-S)",
+          value: gapLabel,
+          note: gapOverall >= 0 ? "Manager rates higher than Self" : "Self rates higher than Manager"
+        },
+        {
+          label: "Alignment Index",
+          value: `${Math.round(alignmentIndex)}%`,
+          note: "100% indicates perfect self-manager scoring alignment"
+        }
+      ];
+
+      kpiGrid.innerHTML = cards
+        .map(
+          (card) => `
+            <article class="kpi">
+              <p class="label">${card.label}</p>
+              <p class="value">${card.value}</p>
+              <p class="note">${card.note}</p>
+            </article>
+          `
+        )
+        .join("");
+
+      const strongCount = stats.filter((d) => d.managerAvg >= 3.6).length;
+      const priorityCount = stats.filter((d) => d.managerAvg < 3.0).length;
+      document.getElementById("executiveNarrative").textContent =
+        `Manager scoring places ${strongCount} of ${stats.length} dimensions in Effective/Role Model bands, ` +
+        `with ${priorityCount} dimensions in Priority band. Focus first on low-scoring dimensions with high perception gaps for fastest capability lift.`;
+    }
+
+    function renderChart(stats) {
+      const area = document.getElementById("chartArea");
+      area.innerHTML = stats
+        .map((stat) => {
+          const selfWidth = Math.max(0, Math.min(100, (stat.selfAvg / 5) * 100));
+          const managerWidth = Math.max(0, Math.min(100, (stat.managerAvg / 5) * 100));
+          return `
+            <div class="chart-row">
+              <p class="chart-label">${stat.dimension}</p>
+              <div class="bars">
+                <div class="bar-track"><div class="bar self" style="width:${selfWidth}%"></div></div>
+                <div class="bar-track"><div class="bar manager" style="width:${managerWidth}%"></div></div>
+                <div class="bar-caption">
+                  <span>Self: ${format(stat.selfAvg)}</span>
+                  <span>Manager: ${format(stat.managerAvg)}</span>
+                  <span>Gap: ${stat.gap >= 0 ? "+" : ""}${format(stat.gap)}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+    }
+
+    function renderSummaryTable(stats) {
+      const tbody = document.querySelector("#summaryTable tbody");
+      tbody.innerHTML = stats
+        .map(
+          (stat) => `
+            <tr>
+              <td>${stat.dimension}</td>
+              <td>${format(stat.selfAvg)}</td>
+              <td>${format(stat.managerAvg)}</td>
+              <td>${stat.gap >= 0 ? "+" : ""}${format(stat.gap)}</td>
+              <td><span class="score-pill ${stat.band.className}">${stat.band.label}</span></td>
+              <td>${stat.band.note}</td>
+            </tr>
+          `
+        )
+        .join("");
+    }
+
+    function renderInsights(stats) {
+      const strengths = [...stats].sort((a, b) => b.managerAvg - a.managerAvg).slice(0, 3);
+      const priorities = [...stats]
+        .sort((a, b) => {
+          const byScore = a.managerAvg - b.managerAvg;
+          if (Math.abs(byScore) > 0.001) {
+            return byScore;
+          }
+          return b.absGap - a.absGap;
+        })
+        .slice(0, 3);
+
+      document.getElementById("strengthList").innerHTML = strengths
+        .map(
+          (d) =>
+            `<li><strong>${d.dimension}</strong> (${format(d.managerAvg)}) - ${d.guidance.interpretation}</li>`
+        )
+        .join("");
+
+      document.getElementById("priorityList").innerHTML = priorities
+        .map((d) => {
+          const gapText = d.gap >= 0 ? `+${format(d.gap)}` : format(d.gap);
+          return `<li><strong>${d.dimension}</strong> (${format(d.managerAvg)}) - Gap ${gapText}. ${d.guidance.intent}</li>`;
+        })
+        .join("");
+
+      return { strengths, priorities };
+    }
+
+    function renderDetails(stats, selfRatings, managerRatings) {
+      const detailGrid = document.getElementById("detailGrid");
+      detailGrid.innerHTML = stats
+        .map((stat) => {
+          const statementRows = stat.rows
+            .map((item) => {
+              const s = selfRatings[item.id];
+              const m = managerRatings[item.id];
+              const g = m - s;
+              return `
+                <tr>
+                  <td>${item.managerText}</td>
+                  <td class="mini-score">${format(s, 1)}</td>
+                  <td class="mini-score">${format(m, 1)}</td>
+                  <td class="mini-score">${g >= 0 ? "+" : ""}${format(g, 1)}</td>
+                </tr>
+              `;
+            })
+            .join("");
+
+          return `
+            <article class="detail-card">
+              <div class="detail-head">
+                <div>
+                  <h4>${stat.dimension}</h4>
+                  <p>${stat.guidance.intent}</p>
+                </div>
+                <div>
+                  <p>Self ${format(stat.selfAvg)} | Manager ${format(stat.managerAvg)} | Gap ${stat.gap >= 0 ? "+" : ""}${format(stat.gap)}</p>
+                </div>
+              </div>
+              <p>${stat.guidance.interpretation}</p>
+              <table class="mini-table">
+                <thead>
+                  <tr>
+                    <th>Behavior Statement</th>
+                    <th>Self</th>
+                    <th>Manager</th>
+                    <th>Gap</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${statementRows}
+                </tbody>
+              </table>
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    function renderPlan(priorities) {
+      const tbody = document.querySelector("#planTable tbody");
+      tbody.innerHTML = priorities
+        .map((p) => {
+          const [thirty, sixty, ninety] = p.guidance.actions;
+          return `
+            <tr>
+              <td><strong>${p.dimension}</strong><br><span class="mini-score">Manager ${format(p.managerAvg)} | Gap ${p.gap >= 0 ? "+" : ""}${format(p.gap)}</span></td>
+              <td>${thirty}</td>
+              <td>${sixty}</td>
+              <td>${ninety}</td>
+            </tr>
+          `;
+        })
+        .join("");
+    }
+
+    function fillCoverAndMeta() {
+      const participant = document.getElementById("participantName").value.trim() || "Participant";
+      const role = document.getElementById("participantRole").value.trim() || "Role not specified";
+      const func = document.getElementById("participantFunction").value.trim() || "Function not specified";
+      const manager = document.getElementById("managerName").value.trim() || "Manager not specified";
+      const date = document.getElementById("assessmentDate").value || "Date not specified";
+
+      document.getElementById("coverParticipant").textContent = participant;
+      document.getElementById("coverRoleFunction").textContent = `${role} · ${func}`;
+      document.getElementById("coverManager").textContent = manager;
+      document.getElementById("coverDate").textContent = date;
+
+      document.getElementById("reportMeta").textContent = `${participant} | ${role} | ${func} | Manager: ${manager} | ${date}`;
+    }
+
+    function generateReport() {
+      const selfRatings = getRatings("self");
+      const managerRatings = getRatings("manager");
+
+      const allSelf = items.map((item) => selfRatings[item.id]);
+      const allManager = items.map((item) => managerRatings[item.id]);
+      const allAbsGap = items.map((item) => Math.abs(managerRatings[item.id] - selfRatings[item.id]));
+
+      const selfOverall = average(allSelf);
+      const managerOverall = average(allManager);
+      const gapOverall = managerOverall - selfOverall;
+      const alignmentIndex = Math.max(0, 100 - (average(allAbsGap) / 4) * 100);
+
+      const stats = computeDimensionStats(selfRatings, managerRatings).sort((a, b) => b.managerAvg - a.managerAvg);
+
+      fillCoverAndMeta();
+      renderKpis(stats, selfOverall, managerOverall, alignmentIndex, gapOverall);
+      renderChart(stats);
+      renderSummaryTable(stats);
+      const { priorities } = renderInsights(stats);
+      renderDetails(stats, selfRatings, managerRatings);
+      renderPlan(priorities);
+
+      reportSection.classList.remove("hidden");
+      printBtn.disabled = false;
+      reportSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function resetAll() {
+      assessmentForm.querySelectorAll("select").forEach((select) => {
+        select.value = "";
+      });
+      importSelfInput.value = "";
+      importManagerInput.value = "";
+      updateProgress();
+      reportSection.classList.add("hidden");
+      printBtn.disabled = true;
+    }
+
+ workflowMode.addEventListener("change", () => {
+
+  applyEntryMode();
+
+
+  updateProgress();
+
+});
+
+    exportSelfBtn.addEventListener("click", () => {
+      exportSide("self");
+    });
+
+    exportManagerBtn.addEventListener("click", () => {
+      exportSide("manager");
+    });
+
+    importSelfBtn.addEventListener("click", () => {
+      importSelfInput.click();
+    });
+
+    importManagerBtn.addEventListener("click", () => {
+      importManagerInput.click();
+    });
+
+    importSelfInput.addEventListener("change", (event) => {
+      const target = event.target;
+      const file = target.files && target.files[0];
+      if (file) {
+        importSide("self", file);
+      }
+      target.value = "";
+    });
+
+    importManagerInput.addEventListener("change", (event) => {
+      const target = event.target;
+      const file = target.files && target.files[0];
+      if (file) {
+        importSide("manager", file);
+      }
+      target.value = "";
+    });
+
+generateBtn.addEventListener("click", generateReport)
+resetBtn.addEventListener("click", resetAll)
+
+printBtn.addEventListener("click", () => {
+window.print()
+})
+
+const sendManagerBtn = document.getElementById("sendManagerBtn")
+
+sendManagerBtn.addEventListener("click", async function(){
+
+const employeeEmail = localStorage.getItem("userEmail")
+
+const managerEmail = "kumargauravoknielit@gmail.com"
+
+const assessmentLink =
+window.location.origin + "/assessment.html?user=" + employeeEmail
+
+const { error } = await supabaseClient.auth.signInWithOtp({
+email: managerEmail,
+options:{
+emailRedirectTo: assessmentLink
+}
+})
+
+if(error){
+alert("Error sending assessment")
+}else{
+alert("Assessment sent to manager successfully")
+}
+
+})
+
+
+async function resetEmployeeRatings(){
+
+const employeeEmail = localStorage.getItem("userEmail")
+
+if(!employeeEmail) return
+
+await supabaseClient
+.from("responses")
+.delete()
+.eq("user_email", employeeEmail)
+
+}
+
+
+async function loadEmployeeRatings(){
+
+const employeeEmail = localStorage.getItem("employeeEmail")
+
+if(!employeeEmail) return
+
+const { data, error } = await supabaseClient
+.from("responses")
+.select("*")
+.eq("user_email", employeeEmail)
+
+
+if(error){
+console.log(error)
+return
+}
+
+data.forEach(row => {
+
+const select = document.querySelector(
+`select[data-id="${row.question_id}"][data-kind="${row.rating_type}"]`
+)
+
+if(select){
+select.value = row.score
+}
+
+})
+
+}
+
+
+
+
+</script>
+<script>
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+const params = new URLSearchParams(window.location.search)
+const employeeEmail = params.get("user")
+
+if(employeeEmail){
+localStorage.setItem("employeeEmail", employeeEmail)
+}
+
+const { data } = await supabaseClient.auth.getUser()
+
+if(data && data.user){
+
+localStorage.setItem("userEmail", data.user.email)
+
+const emailBox = document.getElementById("loggedUserEmail")
+
+if(emailBox){
+emailBox.innerText = "Logged in as: " + data.user.email
+}
+
+}
+
+const loginEmail = localStorage.getItem("userEmail")
+
+if(loginEmail !== managerEmail){
+await resetEmployeeRatings()
+}
+
+renderForm()
+
+if(loginEmail === managerEmail){
+await loadEmployeeRatings()
+}
+
+updateProgress()
+
+})
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="script.js"></script>
+</body>
+</html>

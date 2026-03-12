@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+</head>
+
+<body>
+
+<h2>Assessment Submissions</h2>
+
+<button onclick="loadResponses()">Load Data</button>
+<button onclick="exportCSV()">Export CSV</button>
+
+<table border="1" id="table">
+<thead>
+<tr>
+<th>User</th>
+<th>Question</th>
+<th>Self Score</th>
+<th>Manager Score</th>
+<th>Submitted At</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
