@@ -29,7 +29,28 @@ Send Login Link
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="script.js"></script>
 
+<script>
+
+async function checkLoginSession(){
+
+const { data } = await supabaseClient.auth.getSession()
+
+if(data.session){
+
+localStorage.setItem("userEmail", data.session.user.email)
+
+window.location.href = "assessment.html"
+
+}
+
+}
+
+checkLoginSession()
+
+</script>
+
+<script src="script.js"></script>
 </body>
 </html>
+
