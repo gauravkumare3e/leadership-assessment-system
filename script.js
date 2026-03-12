@@ -64,7 +64,7 @@ const { error } = await supabaseClient.auth.signInWithOtp({
 email: email,
 
 options:{
-emailRedirectTo: "https://inspireone-assessment-system.vercel.app/assessment.html?user=" + email
+emailRedirectTo: "https://inspireone-assessment-system.vercel.app/assessment.html" + email
 }
 
 })
@@ -266,6 +266,7 @@ field.disabled = !selfComplete
 })
 
 }
+
 
 
 
