@@ -1403,6 +1403,7 @@
         <h1>LDC 180 Degree Leadership Assessment</h1>
 
 <p id="loggedUserEmail" style="font-weight:600;color:#2a82c9;margin-top:4px;"></p>
+
         <p>
           Standards-aligned 180 assessment with dual-view scoring (Self + Manager), dimension-level analytics,
           perception-gap analysis, and action-planning outputs designed around globally accepted assessment practices.
@@ -2720,11 +2721,14 @@ const { data, error } = await supabaseClient
 .select("*")
 .eq("user_email", employeeEmail)
 
-
 if(error){
 console.log(error)
 return
 }
+
+assessmentForm.querySelectorAll("select").forEach(select=>{
+select.value=""
+})
 
 data.forEach(row => {
 
@@ -2737,6 +2741,8 @@ select.value = row.score
 }
 
 })
+
+updateProgress()
 
 }
 
@@ -2771,9 +2777,7 @@ emailBox.innerText = "Logged in as: " + data.user.email
 
 const loginEmail = localStorage.getItem("userEmail")
 
-if(loginEmail !== managerEmail){
-await resetEmployeeRatings()
-}
+
 
 renderForm()
 
